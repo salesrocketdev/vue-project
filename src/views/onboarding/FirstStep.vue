@@ -1,6 +1,10 @@
 <template>
   <section class="flex flex-col w-6/6 justify-center items-center text-center h-full">
-    <img class="mb-2" src="@/assets/svg/step1-ilustration.svg" alt="Ilustração de onboarding 1" />
+    <img
+      class="rounded-full mb-2"
+      src="@/assets/svg/step1-ilustration.svg"
+      alt="Ilustração de onboarding 1"
+    />
 
     <h2 class="mb-2 text-xl font-extrabold text-violet-500">
       <span>Não brinca?!</span>

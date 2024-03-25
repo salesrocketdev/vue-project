@@ -1,7 +1,7 @@
 <template>
   <section class="flex flex-col w-6/6 justify-center items-center text-center h-full">
     <img
-      class="mb-2"
+      class="roundedd-full mb-2"
       width="200"
       height="200"
       src="@/assets/svg/step3-ilustration.svg"
@@ -21,13 +21,31 @@
     </p>
 
     <div class="flex flex-col gap-y-2 w-full my-4">
-      <PrimaryButton :label="'Dar uma olhadinha'" />
-      <SecondaryButton :label="'Criar uma conta'" />
+      <PrimaryButton
+        :label="'Dar uma olhadinha'"
+        @click="
+          () => {
+            router.push({ name: 'home' })
+          }
+        "
+      />
+      <SecondaryButton
+        :label="'Criar uma conta'"
+        @click="
+          () => {
+            router.push({ name: 'sign-up' })
+          }
+        "
+      />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import PrimaryButton from '@/components/atoms/PrimaryButton.vue'
-import SecondaryButton from '@/components/atoms/SecondaryButton.vue'
+import { useRouter } from 'vue-router'
+
+import PrimaryButton from '@/components/atoms/button/PrimaryButton.vue'
+import SecondaryButton from '@/components/atoms/button/SecondaryButton.vue'
+
+const router = useRouter()
 </script>

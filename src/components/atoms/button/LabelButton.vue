@@ -1,6 +1,6 @@
 <template>
-  <button :class="`p-2 bg-${props.backgroundColor}`">
-    <RouterLink :class="`text-${props.textColor} font-bold`" :to="props.route">
+  <button :class="`bg-${props.backgroundColor}`">
+    <RouterLink :class="`text-${props.textColor} font-bold `" :to="props.route">
       {{ props.label }}
     </RouterLink>
   </button>
@@ -31,6 +31,18 @@ const props = defineProps({
 
 <style scoped>
 a {
+  font-weight: 600;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+a:hover {
+  background-color: transparent;
+}
+
+button {
+  background-color: #fff;
   font-weight: 600;
 }
 

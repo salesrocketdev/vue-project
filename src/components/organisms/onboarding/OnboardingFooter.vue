@@ -1,5 +1,5 @@
 <template>
-  <footer class="w-full px-6 py-4">
+  <footer class="w-full px-none px-6 py-4">
     <section class="flex flex-row justify-center items-center mb-6">
       <template v-for="index in 3" :key="index">
         <div
@@ -53,7 +53,7 @@
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
-import LabelButton from '@/components/atoms/LabelButton.vue'
+import LabelButton from '@/components/atoms/button/LabelButton.vue'
 
 const route = useRoute()
 

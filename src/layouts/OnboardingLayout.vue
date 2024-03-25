@@ -1,8 +1,8 @@
 <template>
-  <OnboardingNavBar />
+  <!-- <OnboardingNavBar /> -->
 
   <main
-    class="container relative flex flex-col justify-between h-[75vh] max-w-2xl px-6 mx-auto xl:px-0 mt-4"
+    class="container relative flex flex-col justify-between h-[75vh] max-w-2xl px-6 mx-auto xl:px-0"
   >
     <router-view v-slot="{ Component }">
       <component :is="Component" />
@@ -13,7 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import OnboardingNavBar from '@/components/organisms/onboarding/OnboardingNavBar.vue'
 import OnboardingFooter from '@/components/organisms/onboarding/OnboardingFooter.vue'
 </script>
 

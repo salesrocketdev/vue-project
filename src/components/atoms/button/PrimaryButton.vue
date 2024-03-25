@@ -1,5 +1,5 @@
 <template>
-  <button class="rounded-lg w-full p-3 duration-300">
+  <button class="rounded-lg w-full p-3 duration-300" :type="props.type">
     <span>
       {{ props.label }}
     </span>
@@ -11,6 +11,10 @@ const props = defineProps({
   label: {
     type: String,
     default: 'Texto'
+  },
+  type: {
+    type: String as () => 'button' | 'submit' | 'reset',
+    default: 'button'
   }
 })
 </script>
