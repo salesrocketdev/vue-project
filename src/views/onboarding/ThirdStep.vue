@@ -22,21 +22,24 @@
 
     <div class="flex flex-col gap-y-2 w-full my-4">
       <PrimaryButton
-        :label="'Dar uma olhadinha'"
         @click="
           () => {
             router.push({ name: 'home' })
           }
         "
-      />
+      >
+        Dar uma olhadinha
+      </PrimaryButton>
+
       <SecondaryButton
-        :label="'Criar uma conta'"
         @click="
           () => {
             router.push({ name: 'sign-up' })
           }
         "
-      />
+      >
+        Criar uma conta
+      </SecondaryButton>
     </div>
   </section>
 </template>

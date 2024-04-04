@@ -1,16 +1,16 @@
 <template>
-  <BaseFieldContainer>
+  <BaseFieldContainer class="!mb-0">
     <template v-slot:field-content>
-      <BaseInputLabel :for="'password'"> Palavra chave </BaseInputLabel>
-      <BaseInput
-        :id="'password'"
-        :type="'password'"
-        :placeholder="'••••••••'"
-        v-model="password"
-        @update:model-value="emits('update:value', $event)"
-      />
-
-      <slot name="field-errors"></slot>
+      <div class="flex items-center">
+        <BaseInput
+          class="!w-auto mb-0"
+          :id="'remember'"
+          :type="'checkbox'"
+          v-model="remember"
+          @update:model-value="emits('update:value', $event)"
+        />
+        <BaseInputLabel class="w-full ml-2 !mb-0" :for="'remember'"> Lembrar </BaseInputLabel>
+      </div>
     </template>
   </BaseFieldContainer>
 </template>
@@ -26,21 +26,21 @@ const emits = defineEmits(['update:value'])
 
 const props = defineProps({
   value: {
-    type: String,
-    default: ''
+    type: Boolean,
+    default: false
   }
 })
 
-const password = ref()
+const remember = ref()
 
 watch(
   () => props.value,
   (newValue) => {
-    password.value = newValue
+    remember.value = newValue
   }
 )
 
 onMounted(() => {
-  password.value = props.value
+  remember.value = props.value
 })
 </script>

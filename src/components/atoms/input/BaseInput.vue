@@ -5,6 +5,7 @@
     :type="props.type"
     :placeholder="props.placeholder"
     v-model="inputValue"
+    :maxlength="props.maxLength"
     @input="emits('update:modelValue', $event.target ? inputValue : null)"
   />
 </template>
@@ -26,6 +27,10 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: 'placeholder text'
+  },
+  maxLength: {
+    type: String,
+    default: '40'
   }
 })
 

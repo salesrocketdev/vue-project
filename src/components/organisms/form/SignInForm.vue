@@ -18,8 +18,42 @@
       </template>
     </PasswordInput>
 
-    <PrimaryButton :label="'Sign in'" :type="'submit'" />
+    <div class="flex items-center justify-between">
+      <RememberPasswordInput :value="form.remember" @update:value="form.remember = $event" />
+      <div>
+        <a
+          href="#"
+          class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+        >
+          Esqueceu sua senha?
+        </a>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center mt-6 gap-y-2">
+      <PrimaryButton :is-loading="isLoading" :type="'submit'">
+        <span v-if="!isLoading"> Acessar minha conta </span>
+        <span v-else> Conectando... </span>
+      </PrimaryButton>
+
+      <p class="text-sm font-light text-gray-500 dark:text-gray-400">ou</p>
+
+      <GoogleButton />
+
+      <p class="text-sm font-light text-gray-500 dark:text-gray-400 mt-4">
+        Ainda não possuí uma conta?
+
+        <RouterLink
+          class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+          to="signUp"
+        >
+          <strong> Crie uma agora </strong>
+        </RouterLink>
+      </p>
+    </div>
   </form>
+
+  <ModalLoading v-if="isLoading" />
 </template>
 
 <script setup lang="ts">
@@ -28,15 +62,27 @@ import { reactive, computed } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required, email } from '@vuelidate/validators'
 
+import { useAuth } from '@/composables/useAuth'
+
 import EmailInput from '@/components/molecules/input/EmailInput.vue'
 import PasswordInput from '@/components/molecules/input/PasswordInput.vue'
+import RememberPasswordInput from '@/components/molecules/input/RememberPasswordInput.vue'
 
 import BaseInputErrorText from '@/components/atoms/text/BaseInputErrorText.vue'
 
 import PrimaryButton from '@/components/atoms/button/PrimaryButton.vue'
-const form = reactive({
+import GoogleButton from '@/components/atoms/button/GoogleButton.vue'
+
+import ModalLoading from '@/components/organisms/modal/ModalLoading.vue'
+
+import type { SignInRequest } from '@/types/request/signIn.request'
+
+const { isLoading, signIn } = useAuth()
+
+const form = reactive<SignInRequest>({
   email: '',
-  password: ''
+  password: '',
+  remember: false
 })
 
 const rules = computed(() => {
@@ -57,18 +103,8 @@ const handleSubmit = async () => {
 
   if (!result) return
 
-  alert('Form submitted successfully')
+  await signIn(form)
 }
 
 const v$ = useVuelidate(rules, form)
 </script>
-
-<style>
-form {
-  width: 400px;
-  margin: 0 auto;
-  background-color: #f1f1f1;
-  padding: 30px;
-  border-radius: 20px;
-}
-</style>

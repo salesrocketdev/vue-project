@@ -1,6 +1,6 @@
 <template>
   <label :for="props.for" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-    {{ props.label }}
+    <slot> </slot>
   </label>
 </template>
 
@@ -9,10 +9,6 @@ const props = defineProps({
   for: {
     type: String,
     default: 'id'
-  },
-  label: {
-    type: String,
-    default: 'Id'
   }
 })
 </script>
