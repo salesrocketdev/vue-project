@@ -48,11 +48,10 @@ export function useAuth() {
 
   async function logout() {
     try {
-      const response = await AuthService.logout()
+      await AuthService.logout()
 
-      if (response) useAuthStore().removeToken()
-
-      return response
+      useUserStore().removeUser()
+      useAuthStore().handleLogout()
     } catch (error) {
       console.error(error)
     }

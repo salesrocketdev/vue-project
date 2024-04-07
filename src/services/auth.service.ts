@@ -25,10 +25,10 @@ export class AuthService {
     }
   }
 
-  static async logout(): Promise<boolean> {
+  static async logout() {
     try {
-      const response = await BaseService.post<void>('Authenticate/Logout')
-      return response ? true : false
+      const response = await BaseService.post('Authenticate/Logout')
+      return response
     } catch (error) {
       console.error('Error in logout:', error)
       return false

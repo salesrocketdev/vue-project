@@ -18,6 +18,10 @@ export const useAuthStore = defineStore('auth', {
       this.token = ''
       localStorage.removeItem('jwt_token')
     },
+    handleLogout() {
+      this.removeToken()
+      router.replace({ name: 'sign-in' })
+    },
     handleUnauthorized() {
       this.removeToken()
       router.replace({ name: 'sign-in' })
