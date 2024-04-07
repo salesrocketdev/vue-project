@@ -4,7 +4,7 @@
   >
     <div class="relative flex justify-center w-full max-h-full">
       <div class="fixed bottom-0 w-full max-w-md bg-white rounded-lg shadow dark:bg-gray-700">
-        <ModalHeader>Um momento...</ModalHeader>
+        <ModalHeader>{{ props.modalTitle }}</ModalHeader>
         <ModalBody class="flex justify-center items-center">
           <svg
             aria-hidden="true"
@@ -24,7 +24,7 @@
             />
           </svg>
 
-          <p>Carregando...</p>
+          <p>{{ props.modalMessage }}</p>
         </ModalBody>
       </div>
     </div>
@@ -34,4 +34,15 @@
 <script setup lang="ts">
 import ModalHeader from '@/components/molecules/modal/ModalHeader.vue'
 import ModalBody from '@/components/molecules/modal/ModalBody.vue'
+
+const props = defineProps({
+  modalTitle: {
+    type: String,
+    default: 'Um momento...'
+  },
+  modalMessage: {
+    type: String,
+    default: 'Por favor aguarde...'
+  }
+})
 </script>

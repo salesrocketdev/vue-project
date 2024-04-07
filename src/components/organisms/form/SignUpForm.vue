@@ -73,40 +73,6 @@
       </template>
     </GenericInput>
 
-    <GenericInput
-      :field="'rg'"
-      :label="'RG'"
-      :placeholder="'e.g. 00000000-2'"
-      :value="form.document.rg"
-      @update:value="form.document.rg = $event"
-    >
-      <template v-slot:field-errors>
-        <BaseInputErrorText
-          v-if="v$.document?.rg.$error"
-          :error-message="v$.document.rg.$errors ? v$.document.rg.$errors[0]?.$message : undefined"
-        />
-      </template>
-    </GenericInput>
-
-    <GenericInput
-      :field="'driverLicenseNumber'"
-      :label="'CNH'"
-      :placeholder="'e.g. 0000000000'"
-      :value="form.document.driverLicenseNumber"
-      @update:value="form.document.driverLicenseNumber = $event"
-    >
-      <template v-slot:field-errors>
-        <BaseInputErrorText
-          v-if="v$.document?.driverLicenseNumber.$error"
-          :error-message="
-            v$.document.driverLicenseNumber.$errors
-              ? v$.document.driverLicenseNumber.$errors[0]?.$message
-              : undefined
-          "
-        />
-      </template>
-    </GenericInput>
-
     <!-- <PostalCodeInput :value="form.postalCode" @update:value="form.postalCode = $event">
       <template v-slot:field-errors>
         <BaseInputErrorText
@@ -140,10 +106,14 @@
       </p>
     </div>
   </form>
+
+  <ModalLoading v-if="isLoading" />
 </template>
 
 <script setup lang="ts">
 import { reactive, computed } from 'vue'
+
+import { useRouter } from 'vue-router'
 
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, maxLength, required, email, minValue } from '@vuelidate/validators'
@@ -157,9 +127,13 @@ import BaseInputErrorText from '@/components/atoms/text/BaseInputErrorText.vue'
 
 import PrimaryButton from '@/components/atoms/button/PrimaryButton.vue'
 
+import ModalLoading from '@/components/organisms/modal/ModalLoading.vue'
+
 import type { SignUpRequest } from '@/types/request/signUp.request'
 
-const { signUp } = useAuth()
+const router = useRouter()
+
+const { isLoading, signUp } = useAuth()
 
 const form = reactive<SignUpRequest>({
   name: '',
@@ -167,9 +141,7 @@ const form = reactive<SignUpRequest>({
   phone: '',
   email: '',
   document: {
-    taxNumber: '',
-    rg: '',
-    driverLicenseNumber: ''
+    taxNumber: ''
   }
 })
 
@@ -197,16 +169,6 @@ const rules = computed(() => {
         required,
         minLength: minLength(11),
         maxLength: maxLength(11)
-      },
-      rg: {
-        required,
-        minLength: minLength(9),
-        maxLength: maxLength(9)
-      },
-      driverLicenseNumber: {
-        required,
-        minLength: minLength(10),
-        maxLength: maxLength(10)
       }
     }
   }
@@ -217,8 +179,11 @@ const handleSubmit = async () => {
 
   if (!result) return
 
-  await signUp(form)
+  const response = await signUp(form)
+
+  if (response) router.push({ name: 'sign-in' })
 }
 
 const v$ = useVuelidate(rules, form)
 </script>
+@/types/request/signUp

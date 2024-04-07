@@ -1,20 +1,24 @@
-// useAuth.ts
 import { AuthService, CustomerService } from '@/services'
 
-import type { SignInRequest } from '@/types/request/signIn.request'
+import { isLoading } from '@/shared/base.service'
 
-import type { SignUpRequest } from '@/types/request/signUp.request'
+import { useAuthStore, useUserStore } from '@/stores'
 
-import { isLoading } from '../services/auth.service'
+import type { SignInRequest } from '@/types/request/signIn'
+
+import type { SignUpRequest } from '@/types/request/signUp'
 
 export function useAuth() {
   async function signIn(payload: SignInRequest) {
     try {
       const response = await AuthService.login(payload)
 
-      if (response?.data) await GetUserMeta()
+      if (response) {
+        useAuthStore().setToken(response.token)
+        await GetUserMeta()
+      }
 
-      return response?.data
+      return response
     } catch (error) {
       console.error(error)
     }
@@ -24,7 +28,7 @@ export function useAuth() {
     try {
       const response = await CustomerService.createCustomer(payload)
 
-      return response?.data
+      return response
     } catch (error) {
       console.error(error)
     }
@@ -33,8 +37,22 @@ export function useAuth() {
   async function GetUserMeta() {
     try {
       const response = await AuthService.me()
+      if (response) {
+        const userData = JSON.stringify(response)
+        useUserStore().setUser(userData)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
-      return response?.data
+  async function logout() {
+    try {
+      const response = await AuthService.logout()
+
+      if (response) useAuthStore().removeToken()
+
+      return response
     } catch (error) {
       console.error(error)
     }
@@ -43,6 +61,7 @@ export function useAuth() {
   return {
     isLoading,
     signIn,
-    signUp
+    signUp,
+    logout
   }
 }

@@ -1,7 +1,40 @@
-// boot/axios.ts
+import { useAuthStore } from '@/stores/auth.store'
 import axios from 'axios'
 
-// Configuração global do Axios
-axios.defaults.baseURL = 'https://localhost:7063/api/v1/'
+const instance = axios.create({
+  baseURL: 'https://localhost:7063/api/v1/'
+})
 
-export default axios
+instance.interceptors.request.use(
+  (config) => {
+    const token = useAuthStore().token
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
+
+instance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const authRoute = '/Auth' // Define a palavra chave para rotas de autenticação
+
+    // Verifica se a rota da requisição não contém a palavra 'Auth'
+    if (!error.config.url || error.config.url.indexOf(authRoute) === -1) {
+      // Se o erro for de status 401 (Unauthorized), executa o tratamento
+      if (error.response && error.response.status === 401) {
+        useAuthStore().handleUnauthorized()
+      }
+    }
+
+    return Promise.reject(error)
+  }
+)
+
+export default instance

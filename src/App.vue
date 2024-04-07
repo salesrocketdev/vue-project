@@ -15,4 +15,3 @@ const toast = useToastStore()
 </script>
 
 <style scoped></style>
-@/stores/toast.store

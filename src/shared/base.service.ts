@@ -1,28 +1,47 @@
-// services/BaseService.ts
+import { ref } from 'vue'
+
 import axios from '@/boot/axios'
 
-import type { AxiosError } from 'axios'
+import { type AxiosResponse, AxiosError } from 'axios'
 
-import { useToastStore } from '@/stores/toast.store'
+import type { ApiResponse } from '@/types/shared/apiResponse'
 
-const toast = useToastStore()
+export const isLoading = ref(false)
 
 export default class BaseService {
-  static async get(endpoint: string, params?: any) {
-    const response = await axios.get(endpoint, { params })
-    return response
+  static async get<T>(endpoint: string, params?: any): Promise<T | null> {
+    try {
+      isLoading.value = true
+      const response: AxiosResponse<ApiResponse<T>> = await axios.get(endpoint, { params })
+      if (response.data.code === 1) {
+        return response.data.data || null
+      } else {
+        console.error('GET request failed:', response.data.message)
+        return null
+      }
+    } catch (error) {
+      console.error('Error in GET request:', error)
+      return null
+    } finally {
+      isLoading.value = false
+    }
   }
 
-  static async post(endpoint: string, data?: any) {
+  static async post<T>(endpoint: string, data?: any): Promise<T | null> {
     try {
-      const response = await axios.post(endpoint, data)
-
-      return response
-    } catch (error: any) {
-      const errorObject: AxiosError = error
-
-      const message = errorObject.message || 'Ocorreu um erro durante a requisição.'
-      toast.show(message)
+      isLoading.value = true
+      const response: AxiosResponse<ApiResponse<T>> = await axios.post(endpoint, data)
+      if (response.data.code === 1) {
+        return response.data.data || null
+      } else {
+        console.error('POST request failed:', response.data.message)
+        return null
+      }
+    } catch (error) {
+      console.error('Error in POST request:', error)
+      return null
+    } finally {
+      isLoading.value = false
     }
   }
 }

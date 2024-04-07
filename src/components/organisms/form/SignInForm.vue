@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form @submit.prevent="handleSubmit()">
     <EmailInput :value="form.email" @update:value="form.email = $event">
       <template v-slot:field-errors>
         <BaseInputErrorText
@@ -59,8 +59,12 @@
 <script setup lang="ts">
 import { reactive, computed } from 'vue'
 
+import { useRouter } from 'vue-router'
+
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required, email } from '@vuelidate/validators'
+
+import type { SignInRequest } from '@/types/request/signIn'
 
 import { useAuth } from '@/composables/useAuth'
 
@@ -75,7 +79,7 @@ import GoogleButton from '@/components/atoms/button/GoogleButton.vue'
 
 import ModalLoading from '@/components/organisms/modal/ModalLoading.vue'
 
-import type { SignInRequest } from '@/types/request/signIn.request'
+const router = useRouter()
 
 const { isLoading, signIn } = useAuth()
 
@@ -103,7 +107,9 @@ const handleSubmit = async () => {
 
   if (!result) return
 
-  await signIn(form)
+  const response = await signIn(form)
+
+  if (response) router.push({ name: 'home' })
 }
 
 const v$ = useVuelidate(rules, form)

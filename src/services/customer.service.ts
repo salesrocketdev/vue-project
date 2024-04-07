@@ -1,11 +1,12 @@
 import BaseService from '@/shared/base.service'
 
-import type { SignUpRequest } from '@/types/request/signUp.request'
+import type { SignUpRequest } from '@/types/request/signUp'
+import type { UserData } from '@/types/response/userData'
 
 export class CustomerService {
-  static async createCustomer(payload: SignUpRequest) {
+  static async createCustomer(payload: SignUpRequest): Promise<UserData | undefined> {
     try {
-      const response = await BaseService.post('Customers', payload)
+      const response = await BaseService.post<UserData>('Customers', payload)
 
       return response
     } catch (error) {

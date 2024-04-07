@@ -5,7 +5,5 @@ export interface SignUpRequest {
   email: string
   document: {
     taxNumber: string
-    rg: string
-    driverLicenseNumber: string
   }
 }
