@@ -56,7 +56,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const isAuthenticated = useAuthStore().isAuthenticated
 
-  if (!to.path.includes('/auth') && !isAuthenticated) {
+  if (!to.path.includes('/auth') && to.meta.requiresAuth && !isAuthenticated) {
     next({ name: 'sign-in' }) // Redireciona para a página de login se o usuário não estiver autenticado
   } else if (to.path.includes('/auth') && isAuthenticated) {
     // Se o usuário estiver autenticado e tentar acessar uma rota de autenticação,

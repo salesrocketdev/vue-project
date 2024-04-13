@@ -91,7 +91,7 @@
       </template>
     </PasswordInput> -->
 
-    <div class="flex flex-col items-center mt-6 gap-y-2">
+    <div class="flex flex-col items-center mt-4 gap-y-2">
       <PrimaryButton :type="'submit'">Criar conta</PrimaryButton>
 
       <p class="text-sm font-light text-gray-500 dark:text-gray-400 mt-4">
@@ -120,6 +120,8 @@ import { minLength, maxLength, required, email, minValue } from '@vuelidate/vali
 
 import { useAuth } from '@/composables/useAuth'
 
+import type { SignUpRequest } from '@/types/request/signUp'
+
 import EmailInput from '@/components/molecules/input/EmailInput.vue'
 import GenericInput from '@/components/molecules/input/GenericInput.vue'
 
@@ -128,8 +130,6 @@ import BaseInputErrorText from '@/components/atoms/text/BaseInputErrorText.vue'
 import PrimaryButton from '@/components/atoms/button/PrimaryButton.vue'
 
 import ModalLoading from '@/components/organisms/modal/ModalLoading.vue'
-
-import type { SignUpRequest } from '@/types/request/signUp.request'
 
 const router = useRouter()
 

@@ -21,16 +21,16 @@
     <div class="flex items-center justify-between">
       <RememberPasswordInput :value="form.remember" @update:value="form.remember = $event" />
       <div>
-        <a
-          href="#"
+        <RouterLink
           class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+          to="resetPassword"
         >
           Esqueceu sua senha?
-        </a>
+        </RouterLink>
       </div>
     </div>
 
-    <div class="flex flex-col items-center mt-6 gap-y-2">
+    <div class="flex flex-col items-center mt-4 gap-y-2">
       <PrimaryButton :is-loading="isLoading" :type="'submit'">
         <span v-if="!isLoading"> Acessar minha conta </span>
         <span v-else> Conectando... </span>
