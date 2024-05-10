@@ -1,12 +1,13 @@
 <template>
   <BaseFieldContainer>
     <template v-slot:field-content>
-      <BaseInputLabel :for="props.id"> {{ props.label }} </BaseInputLabel>
+      <BaseInputLabel :for="'phone'"> Número de celular </BaseInputLabel>
       <BaseInput
-        :id="props.id"
-        :type="'password'"
-        :placeholder="'••••••••'"
-        v-model="password"
+        :id="'phone'"
+        :type="'tel'"
+        :placeholder="'e.g. (21) 97543-4411'"
+        :mask-options="phoneMask"
+        v-model="phoneNumber"
         @update:model-value="emits('update:value', $event)"
       />
 
@@ -22,33 +23,27 @@ import BaseFieldContainer from '@/components/atoms/container/BaseFieldContainer.
 import BaseInputLabel from '@/components/atoms/text/BaseInputLabel.vue'
 import BaseInput from '@/components/atoms/input/BaseInput.vue'
 
+import { phoneMask } from '@/shared/mask/mask'
+
 const emits = defineEmits(['update:value'])
 
 const props = defineProps({
-  id: {
-    type: String,
-    default: 'id'
-  },
-  label: {
-    type: String,
-    default: ''
-  },
   value: {
     type: String,
     default: ''
   }
 })
 
-const password = ref()
+const phoneNumber = ref()
 
 watch(
   () => props.value,
   (newValue) => {
-    password.value = newValue
+    phoneNumber.value = newValue
   }
 )
 
 onMounted(() => {
-  password.value = props.value
+  phoneNumber.value = props.value
 })
 </script>

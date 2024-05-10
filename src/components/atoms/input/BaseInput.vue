@@ -6,6 +6,7 @@
     :type="props.type"
     :placeholder="props.placeholder"
     v-model="inputValue"
+    v-maskito="props.maskOptions ? props.maskOptions : null"
     :maxlength="props.maxLength"
     @input="emits('update:modelValue', $event.target ? inputValue : null)"
   />
@@ -32,6 +33,12 @@ const props = defineProps({
   maxLength: {
     type: String,
     default: '40'
+  },
+  maskOptions: {
+    type: Object,
+    default() {
+      return {}
+    }
   }
 })
 

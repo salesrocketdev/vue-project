@@ -18,7 +18,7 @@
     <GenericInput
       :field="'age'"
       :label="'Idade'"
-      :type="'number'"
+      :type="'tel'"
       :placeholder="'e.g. 23'"
       :value="form.age"
       @update:value="form.age = $event"
@@ -31,21 +31,14 @@
       </template>
     </GenericInput>
 
-    <GenericInput
-      :field="'phone'"
-      :label="'Número de celular'"
-      :type="'tel'"
-      :placeholder="'e.g. (21) 97543-4411'"
-      :value="form.phone"
-      @update:value="form.phone = $event"
-    >
+    <PhoneNumberInput :value="form.phone" @update:value="form.phone = $event">
       <template v-slot:field-errors>
         <BaseInputErrorText
-          v-if="v$.phone.$error"
+          v-if="v$?.phone.$error"
           :error-message="v$.phone.$errors ? v$.phone.$errors[0]?.$message : undefined"
         />
       </template>
-    </GenericInput>
+    </PhoneNumberInput>
 
     <EmailInput :value="form.email" @update:value="form.email = $event">
       <template v-slot:field-errors>
@@ -56,10 +49,7 @@
       </template>
     </EmailInput>
 
-    <GenericInput
-      :field="'taxNumber'"
-      :label="'CPF'"
-      :placeholder="'e.g. 000.000.000-00'"
+    <TaxNumberInput
       :value="form.document.taxNumber"
       @update:value="form.document.taxNumber = $event"
     >
@@ -71,7 +61,7 @@
           "
         />
       </template>
-    </GenericInput>
+    </TaxNumberInput>
 
     <!-- <PostalCodeInput :value="form.postalCode" @update:value="form.postalCode = $event">
       <template v-slot:field-errors>
@@ -82,14 +72,35 @@
       </template>
     </PostalCodeInput> -->
 
-    <!-- <PasswordInput :value="form.password" @update:value="form.password = $event">
+    <PasswordInput
+      :label="'Palavra-chave'"
+      :id="'password'"
+      :value="form.password"
+      @update:value="form.password = $event"
+    >
       <template v-slot:field-errors>
         <BaseInputErrorText
           v-if="v$.password.$error"
           :error-message="v$.password.$errors ? v$.password.$errors[0]?.$message : undefined"
         />
       </template>
-    </PasswordInput> -->
+    </PasswordInput>
+
+    <PasswordInput
+      :label="'Confirmação de palavra-chave'"
+      :id="'confirm-password'"
+      :value="form.passwordConfirm"
+      @update:value="form.passwordConfirm = $event"
+    >
+      <template v-slot:field-errors>
+        <BaseInputErrorText
+          v-if="v$.passwordConfirm.$error"
+          :error-message="
+            v$.passwordConfirm.$errors ? v$.passwordConfirm.$errors[0]?.$message : undefined
+          "
+        />
+      </template>
+    </PasswordInput>
 
     <div class="flex flex-col items-center mt-4 gap-y-2">
       <PrimaryButton :type="'submit'">Criar conta</PrimaryButton>
@@ -123,6 +134,9 @@ import { useAuth } from '@/composables/useAuth'
 import type { SignUpRequest } from '@/types/request/signUp'
 
 import EmailInput from '@/components/molecules/input/EmailInput.vue'
+import PhoneNumberInput from '@/components/molecules/input/PhoneNumberInput.vue'
+import TaxNumberInput from '@/components/molecules/input/TaxNumberInput.vue'
+import PasswordInput from '@/components/molecules/input/PasswordInput.vue'
 import GenericInput from '@/components/molecules/input/GenericInput.vue'
 
 import BaseInputErrorText from '@/components/atoms/text/BaseInputErrorText.vue'
@@ -142,7 +156,16 @@ const form = reactive<SignUpRequest>({
   email: '',
   document: {
     taxNumber: ''
-  }
+  },
+  password: '',
+  passwordConfirm: ''
+  // name: 'Caio Sales',
+  // age: 23,
+  // phone: '(02) 1 9797-2076',
+  // email: 'caiofernandosales@outlook.com',
+  // document: {
+  //   taxNumber: '187.774.687-83'
+  // }
 })
 
 const rules = computed(() => {
@@ -157,8 +180,8 @@ const rules = computed(() => {
     },
     phone: {
       required,
-      minLength: minLength(12),
-      maxLength: maxLength(12)
+      minLength: minLength(15),
+      maxLength: maxLength(16)
     },
     email: {
       required,
@@ -167,9 +190,17 @@ const rules = computed(() => {
     document: {
       taxNumber: {
         required,
-        minLength: minLength(11),
-        maxLength: maxLength(11)
+        minLength: minLength(14),
+        maxLength: maxLength(14)
       }
+    },
+    password: {
+      required,
+      minLength: minLength(8)
+    },
+    passwordConfirm: {
+      required,
+      minLength: minLength(8)
     }
   }
 })
@@ -186,4 +217,3 @@ const handleSubmit = async () => {
 
 const v$ = useVuelidate(rules, form)
 </script>
-@/types/request/signUp

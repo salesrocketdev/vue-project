@@ -50,7 +50,7 @@ import ModalLoading from '@/components/organisms/modal/ModalLoading.vue'
 
 const { isLoading } = useAuth()
 
-const step = ref(1)
+const step = ref(0)
 
 const form = reactive({
   email: ''

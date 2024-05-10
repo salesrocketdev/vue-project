@@ -1,3 +1,5 @@
 export * from './auth.service'
 export * from './customer.service'
+export * from './car.service'
+export * from './brand.service'
 export * from './viaCep.service'

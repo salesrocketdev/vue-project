@@ -12,12 +12,18 @@
 
     <div class="ms-3 text-sm font-normal">{{ props.message }}</div>
 
-    <IconButton class="ms-auto -mx-1.5 -my-1.5 bg-white" :icon="'times'" />
+    <IconButton
+      class="ms-auto -mx-1.5 -my-1.5 bg-white"
+      :icon="'times'"
+      @icon-button-click="emits('close')"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import IconButton from '@/components/atoms/button/IconButton.vue'
+
+const emits = defineEmits(['close'])
 
 const props = defineProps({
   message: {

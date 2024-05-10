@@ -4,8 +4,7 @@ import { useAuthStore } from '@/stores/auth.store'
 
 import AuthLayout from '@/layouts/AuthLayout.vue'
 import OnboardingLayout from '@/layouts/OnboardingLayout.vue'
-
-import HomeView from '@/views/HomeView.vue'
+import MainLayout from '../layouts/MainLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,8 +43,42 @@ const router = createRouter({
     },
     {
       path: '/',
-      name: 'home',
-      component: HomeView,
+      redirect: '/explore',
+      component: MainLayout,
+      children: [
+        {
+          name: 'explore',
+          path: 'explore',
+          component: () => import('@/views/main/ExploreView.vue'),
+          meta: {
+            title: 'Explorar'
+          }
+        },
+        {
+          name: 'rental',
+          path: 'rental',
+          component: () => import('@/views/main/RentalView.vue'),
+          meta: {
+            title: 'Meus Alugueis'
+          }
+        },
+        {
+          name: 'favorite',
+          path: 'favorite',
+          component: () => import('@/views/main/FavoriteView.vue'),
+          meta: {
+            title: 'Favoritos'
+          }
+        },
+        {
+          name: 'profile',
+          path: 'profile',
+          component: () => import('@/views/main/ProfileView.vue'),
+          meta: {
+            title: 'Perfil'
+          }
+        }
+      ],
       meta: {
         requiresAuth: true // Definindo a propriedade requiresAuth como true para exigir autenticação
       }

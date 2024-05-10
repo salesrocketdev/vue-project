@@ -2,9 +2,11 @@ import { ref } from 'vue'
 
 import axios from '@/boot/axios'
 
-import { type AxiosResponse, AxiosError } from 'axios'
+import { type AxiosResponse } from 'axios'
 
 import type { ApiResponse } from '@/types/shared/apiResponse'
+
+import { useToastStore } from '@/stores/toast.store'
 
 export const isLoading = ref(false)
 
@@ -19,8 +21,10 @@ export default class BaseService {
         console.error('GET request failed:', response.data.message)
         return null
       }
-    } catch (error) {
+    } catch (error: any) {
+      useToastStore().show(error.response.data.message)
       console.error('Error in GET request:', error)
+
       return null
     } finally {
       isLoading.value = false
@@ -37,8 +41,10 @@ export default class BaseService {
         console.error('POST request failed:', response.data.message)
         return null
       }
-    } catch (error) {
+    } catch (error: any) {
+      useToastStore().show(error.response.data.message)
       console.error('Error in POST request:', error)
+
       return null
     } finally {
       isLoading.value = false

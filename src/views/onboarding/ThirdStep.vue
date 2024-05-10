@@ -24,7 +24,7 @@
       <PrimaryButton
         @click="
           () => {
-            router.push({ name: 'home' })
+            router.push({ name: 'explore' })
           }
         "
       >

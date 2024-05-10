@@ -109,7 +109,7 @@ const handleSubmit = async () => {
 
   const response = await signIn(form)
 
-  if (response) router.push({ name: 'home' })
+  if (response) router.push({ name: 'explore' })
 }
 
 const v$ = useVuelidate(rules, form)

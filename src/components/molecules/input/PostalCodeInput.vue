@@ -54,4 +54,3 @@ onMounted(() => {
   postalCode.value = props.value
 })
 </script>
-@/services/viaCep.service

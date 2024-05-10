@@ -1,12 +1,14 @@
 <template>
   <BaseFieldContainer>
     <template v-slot:field-content>
-      <BaseInputLabel :for="props.id"> {{ props.label }} </BaseInputLabel>
+      <BaseInputLabel :for="'tax-number'"> CPF </BaseInputLabel>
       <BaseInput
-        :id="props.id"
-        :type="'password'"
-        :placeholder="'••••••••'"
-        v-model="password"
+        :id="'tax-number'"
+        :type="'text'"
+        :placeholder="'000.000.000-00'"
+        :mask-options="cpfMask"
+        :max-length="'14'"
+        v-model="taxNumber"
         @update:model-value="emits('update:value', $event)"
       />
 
@@ -22,33 +24,27 @@ import BaseFieldContainer from '@/components/atoms/container/BaseFieldContainer.
 import BaseInputLabel from '@/components/atoms/text/BaseInputLabel.vue'
 import BaseInput from '@/components/atoms/input/BaseInput.vue'
 
+import { cpfMask } from '@/shared/mask/mask'
+
 const emits = defineEmits(['update:value'])
 
 const props = defineProps({
-  id: {
-    type: String,
-    default: 'id'
-  },
-  label: {
-    type: String,
-    default: ''
-  },
   value: {
     type: String,
     default: ''
   }
 })
 
-const password = ref()
+const taxNumber = ref()
 
 watch(
   () => props.value,
   (newValue) => {
-    password.value = newValue
+    taxNumber.value = newValue
   }
 )
 
 onMounted(() => {
-  password.value = props.value
+  taxNumber.value = props.value
 })
 </script>

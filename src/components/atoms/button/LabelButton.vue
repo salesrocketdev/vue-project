@@ -24,7 +24,7 @@ const props = defineProps({
   },
   backgroundColor: {
     type: String,
-    default: 'white'
+    default: ''
   }
 })
 </script>
@@ -42,7 +42,6 @@ a:hover {
 }
 
 button {
-  background-color: #fff;
   font-weight: 600;
 }
 

@@ -1,18 +1,12 @@
 <template>
   <BaseFieldContainer>
     <template v-slot:field-content>
-      <BaseInputLabel :for="props.field"> {{ props.label }} </BaseInputLabel>
-
-      <BaseInput
+      <BaseSearchInput
         :id="props.field"
-        :type="props.type"
         :placeholder="props.placeholder"
-        :mask-options="props.mask"
         v-model="inputValue"
         @update:model-value="handleInputUpdate($event)"
       />
-
-      <slot name="field-errors"></slot>
     </template>
   </BaseFieldContainer>
 </template>
@@ -21,8 +15,7 @@
 import { ref, onMounted, watch, defineProps, defineEmits } from 'vue'
 
 import BaseFieldContainer from '@/components/atoms/container/BaseFieldContainer.vue'
-import BaseInput from '@/components/atoms/input/BaseInput.vue'
-import BaseInputLabel from '@/components/atoms/text/BaseInputLabel.vue'
+import BaseSearchInput from '@/components/atoms/input/BaseSearchInput.vue'
 
 const emits = defineEmits(['update:value'])
 
@@ -38,16 +31,6 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: 'Some placeholder'
-  },
-  type: {
-    type: String,
-    default: 'text'
-  },
-  mask: {
-    type: Object,
-    default() {
-      return {}
-    }
   },
   value: {
     type: [String, Number],
@@ -72,3 +55,9 @@ onMounted(() => {
   inputValue.value = props.value
 })
 </script>
+
+<style scoped>
+div.field-container {
+  margin-bottom: 0px;
+}
+</style>

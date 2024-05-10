@@ -6,4 +6,6 @@ export interface SignUpRequest {
   document: {
     taxNumber: string
   }
+  password: string
+  passwordConfirm: string
 }
