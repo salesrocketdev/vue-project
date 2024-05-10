@@ -2,9 +2,13 @@
   <div class="w-2/6 min-w-36 bg-white text-center rounded-[1rem] shadow">
     <img
       class="px-2 py-2 mx-auto"
-      :src="props.data.imageUrl"
+      :src="
+        props.data.brandImage
+          ? props.data.brandImage
+          : 'https://nlkthtktgjaogtfqqggb.supabase.co/storage/v1/object/sign/brand-images/notfoundbrand.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJicmFuZC1pbWFnZXMvbm90Zm91bmRicmFuZC5zdmciLCJpYXQiOjE3MTUzMDk3NzEsImV4cCI6MTc0Njg0NTc3MX0.CmdfJGvmsrbP7SHJV9VTVnGpKDj_okFpNNjnCQ29eVg&t=2024-05-10T02%3A56%3A11.864Z'
+      "
       alt="Brand logo"
-      width="64"
+      width="150"
       height="100"
     />
 

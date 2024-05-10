@@ -22,7 +22,8 @@ import {
   faCar,
   faHeart,
   faUser,
-  faInfoCircle
+  faInfoCircle,
+  faGear
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -36,7 +37,8 @@ library.add(
   faCar,
   faHeart,
   faUser,
-  faInfoCircle
+  faInfoCircle,
+  faGear
 )
 
 const app = createApp(App)
