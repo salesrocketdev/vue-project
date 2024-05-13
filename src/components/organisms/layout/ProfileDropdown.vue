@@ -68,6 +68,11 @@ const profileDropdownItem: IProfileDropdownItem[] = [
     icon: 'gear',
     title: 'Configurações',
     caption: 'Personalize suas preferências'
+  },
+  {
+    icon: 'sign-out',
+    title: 'Sair da conta',
+    caption: ''
   }
 ]
 

@@ -1,9 +1,20 @@
 <template>
   <li>
     <div class="flex items-center ms-2 text-sm">
-      <FontAwesomeIcon class="text-gray-400 fa-md pr-4" :icon="props.data.icon" />
+      <FontAwesomeIcon
+        :class="{
+          'text-red-500': props.data.title == 'Sair da conta'
+        }"
+        class="text-gray-900 fa-md pr-4"
+        :icon="props.data.icon"
+      />
 
-      <label class="text-left font-medium text-gray-900 dark:text-gray-300">
+      <label
+        :class="{
+          'text-red-500': props.data.title == 'Sair da conta'
+        }"
+        class="text-left font-medium text-gray-900 dark:text-gray-300"
+      >
         <div>{{ props.data.title }}</div>
 
         <p class="line-clamp-1 text-xs font-normal text-gray-500 dark:text-gray-300">
