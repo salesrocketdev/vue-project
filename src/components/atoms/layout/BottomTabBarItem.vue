@@ -1,7 +1,7 @@
 <template>
   <RouterLink
     active-class="!text-purple-600"
-    class="w-full text-gray-400 font-semibold"
+    class="w-full text-gray-400 font-regular"
     :to="props.route"
   >
     <li class="px-2 py-2 text-md duration-300">

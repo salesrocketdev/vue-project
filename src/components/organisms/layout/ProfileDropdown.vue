@@ -25,7 +25,7 @@
       </div>
 
       <div class="ml-2">
-        <h5 class="text-lg font-semibold text-gray-900">Caio Sales</h5>
+        <h5 class="text-md font-semibold text-gray-900">Caio Sales</h5>
         <p class="text-sm font-light text-gray-900">caiofernandosales@outlook.com</p>
       </div>
 

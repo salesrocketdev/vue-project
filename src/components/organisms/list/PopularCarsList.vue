@@ -1,7 +1,7 @@
 <template>
   <section class="mb-[80px]">
     <div class="flex justify-between items-center py-2 px-6">
-      <h5 class="text-xl font-bold text-gray-900">Mais populares</h5>
+      <h5 class="text-xl font-semibold text-gray-900">Mais populares</h5>
     </div>
 
     <div class="flex flex-col gap-y-8 px-6 py-4">

@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { onMounted, watch } from 'vue'
 
 import BaseFieldContainer from '@/components/atoms/container/BaseFieldContainer.vue'
 import BaseInput from '@/components/atoms/input/BaseInput.vue'
@@ -32,7 +32,7 @@ const props = defineProps({
   }
 })
 
-const email = ref()
+const email = defineModel()
 
 watch(
   () => props.value,

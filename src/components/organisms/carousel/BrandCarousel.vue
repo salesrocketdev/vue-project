@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="flex justify-between items-center py-2 px-6">
-      <h5 class="text-xl font-bold text-gray-900">Marcas</h5>
+      <h5 class="text-xl font-semibold text-gray-900">Marcas</h5>
 
       <LabelButton :label="'Ver mais'" :text-color="'gray-600'" />
     </div>

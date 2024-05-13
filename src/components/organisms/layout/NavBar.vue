@@ -8,7 +8,7 @@
 
         <!-- <IconButton class="-mx-1.5 -my-1.5" :icon="'bars'" @icon-button-click="toggleNavbar()" /> -->
 
-        <h5 class="text-lg font-bold text-gray-900">{{ route.meta.title }}</h5>
+        <h5 class="text-lg font-semibold text-gray-900">{{ route.meta.title }}</h5>
 
         <div class="flex ml-auto md:order-2 space-x-3 rtl:space-x-reverse">
           <NotificationDropdown />

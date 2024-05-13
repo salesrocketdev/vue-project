@@ -2,7 +2,7 @@
   <div class="w-full bg-white py-4 text-center rounded-[1rem] shadow">
     <div class="flex pb-4">
       <div class="px-4 pb-4 text-center">
-        <h5 class="text-lg font-bold text-gray-900">
+        <h5 class="text-lg font-semibold text-gray-900">
           {{ props.data.brand.name }}
           {{ props.data.model }}
         </h5>
@@ -24,9 +24,7 @@
     </div>
 
     <div class="px-6">
-      <PrimaryButton :type="'button'">
-        <span> Alugar agora </span>
-      </PrimaryButton>
+      <PrimaryButton :type="'button'"> Alugar agora </PrimaryButton>
     </div>
   </div>
 </template>
