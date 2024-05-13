@@ -19,7 +19,7 @@
 
     <div class="grid grid-cols-3 divide-x px-6 pb-8 text-gray-400">
       <div>{{ transmissionTypeMap[props.data.transmissionType] }}</div>
-      <div>{{ props.data.seatsNumber }} seats</div>
+      <div>{{ props.data.seatsNumber }} lugares</div>
       <div>{{ fuelTypeMap[props.data.fuelType] }}</div>
     </div>
 

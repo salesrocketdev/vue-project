@@ -13,8 +13,8 @@
     }"
     class="bg-white flex-col text-left divide-y divide-gray-100 rounded-md shadow-md w-60 dark:bg-gray-700 dark:divide-gray-600"
   >
-    <div class="flex justify-between items-center py-2 px-2">
-      <h5 class="text-lg font-semibold text-gray-900">Últimas notificações</h5>
+    <div class="flex justify-between items-center py-2 px-4">
+      <h5 class="text-md font-semibold text-gray-900">Últimas notificações</h5>
 
       <LabelButton :label="'Marcar como lido'" :text-color="'primary'" />
     </div>

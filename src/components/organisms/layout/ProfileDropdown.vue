@@ -2,8 +2,10 @@
   <div
     class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-purple-600 rounded-lg"
     @click="toggleDropdown()"
+    id="profileDropdownButton"
+    data-dropdown-toggle="profileDropdown"
   >
-    <span class="font-medium text-white">JL</span>
+    <span class="font-medium text-white">CS</span>
   </div>
 
   <div
@@ -14,83 +16,88 @@
     }"
     class="bg-white flex-col text-left divide-y divide-gray-100 rounded-md shadow-md w-60 dark:bg-gray-700 dark:divide-gray-600"
   >
-    <div class="flex justify-between items-center py-2 px-2">
-      <h5 class="text-lg font-semibold text-gray-900">Últimas notificações</h5>
+    <div class="flex justify-between items-center py-2 px-4">
+      <div
+        class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-purple-600 rounded-lg"
+        @click="toggleDropdown()"
+      >
+        <span class="font-medium text-white">CS</span>
+      </div>
 
-      <LabelButton :label="'Marcar como lido'" :text-color="'primary'" />
+      <div class="ml-2">
+        <h5 class="text-lg font-semibold text-gray-900">Caio Sales</h5>
+        <p class="text-sm font-light text-gray-900">caiofernandosales@outlook.com</p>
+      </div>
+
+      <div class="ml-auto">
+        <LabelButton :label="'Ver perfil'" :text-color="'primary'" />
+      </div>
     </div>
 
     <ul
       class="p-3 space-y-4 text-sm text-gray-700 dark:text-gray-200"
       aria-labelledby="profileDropdownButton"
+      v-for="item in profileDropdownItem"
+      :key="item.title"
     >
-      <li>
-        <div class="flex items-center ms-2 text-sm">
-          <FontAwesomeIcon class="text-gray-400 fa-md pr-4" icon="info-circle" />
-
-          <label class="text-left font-medium text-gray-900 dark:text-gray-300">
-            <div>Enable notifications</div>
-
-            <div class="flex justify-between gap-x-4">
-              <p class="line-clamp-1 text-xs font-normal text-gray-500 dark:text-gray-300">
-                Some helpful instruction goes over...
-              </p>
-
-              <p class="text-xs font-normal text-gray-500 dark:text-gray-300">a moment ago</p>
-            </div>
-          </label>
-        </div>
-      </li>
-
-      <li>
-        <div class="flex items-center ms-2 text-sm">
-          <FontAwesomeIcon class="text-gray-400 fa-md pr-4" icon="info-circle" />
-
-          <label class="text-left font-medium text-gray-900 dark:text-gray-300">
-            <div>Enable notifications</div>
-
-            <div class="flex justify-between gap-x-4">
-              <p class="line-clamp-1 text-xs font-normal text-gray-500 dark:text-gray-300">
-                Some helpful instruction goes over...
-              </p>
-
-              <p class="text-xs font-normal text-gray-500 dark:text-gray-300">a moment ago</p>
-            </div>
-          </label>
-        </div>
-      </li>
-
-      <li>
-        <div class="flex items-center ms-2 text-sm">
-          <FontAwesomeIcon class="text-gray-400 fa-md pr-4" icon="info-circle" />
-
-          <label class="text-left font-medium text-gray-900 dark:text-gray-300">
-            <div>Enable notifications</div>
-
-            <div class="flex justify-between gap-x-4">
-              <p class="line-clamp-1 text-xs font-normal text-gray-500 dark:text-gray-300">
-                Some helpful instruction goes over...
-              </p>
-
-              <p class="text-xs font-normal text-gray-500 dark:text-gray-300">a moment ago</p>
-            </div>
-          </label>
-        </div>
-      </li>
+      <ProfileDropdownItem :data="item" />
     </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 import LabelButton from '@/components/atoms/button/LabelButton.vue'
 
+import ProfileDropdownItem from '@/components/molecules/list/ProfileDropdownItem.vue'
+
+interface IProfileDropdownItem {
+  icon: string
+  title: string
+  caption: string
+}
+
+const profileDropdownItem: IProfileDropdownItem[] = [
+  {
+    icon: 'info-circle',
+    title: 'Minha conta',
+    caption: 'Gerencie dados e preferências'
+  },
+  {
+    icon: 'gear',
+    title: 'Configurações',
+    caption: 'Personalize suas preferências'
+  },
+  {
+    icon: 'sign-out',
+    title: 'Sair da conta',
+    caption: ''
+  }
+]
+
 const showDropdown = ref(false)
 
-const toggleDropdown = () => {
-  showDropdown.value = !showDropdown.value
+const toggleDropdown = () => (showDropdown.value = !showDropdown.value)
+
+const handleClickOutside = (event: MouseEvent) => {
+  const dropdownButton = document.getElementById('profileDropdownButton')
+  const dropdown = document.getElementById('profileDropdown')
+
+  if (!dropdownButton || !dropdown) return
+
+  if (!dropdownButton.contains(event.target as Node) && !dropdown.contains(event.target as Node)) {
+    showDropdown.value = false
+  }
 }
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
 </script>
 
 <style scoped>

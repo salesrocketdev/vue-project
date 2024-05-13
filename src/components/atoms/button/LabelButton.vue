@@ -1,6 +1,6 @@
 <template>
   <button :class="`bg-${props.backgroundColor}`">
-    <RouterLink :class="`text-${props.textColor} font-bold `" :to="props.route">
+    <RouterLink :class="`text-sm text-${props.textColor} font-bold `" :to="props.route">
       {{ props.label }}
     </RouterLink>
   </button>

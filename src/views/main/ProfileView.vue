@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <section class="px-6 py-4">
     Profile Page Works
 
     <div class="break-all">
@@ -12,7 +12,7 @@
         <span v-else> Desconectando... </span>
       </PrimaryButton>
     </form>
-  </main>
+  </section>
 
   <ModalLoading v-if="isLoading" />
 </template>
