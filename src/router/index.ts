@@ -5,6 +5,7 @@ import { useAuthStore } from '@/stores/auth.store'
 import AuthLayout from '@/layouts/AuthLayout.vue'
 import OnboardingLayout from '@/layouts/OnboardingLayout.vue'
 import MainLayout from '../layouts/MainLayout.vue'
+import PageLayout from '@/layouts/PageLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,7 +50,7 @@ const router = createRouter({
         {
           name: 'explore',
           path: 'explore',
-          component: () => import('@/views/main/ExploreView.vue'),
+          component: () => import('@/views/main/explore/IndexPage.vue'),
           meta: {
             title: 'Explorar'
           }
@@ -82,6 +83,23 @@ const router = createRouter({
       meta: {
         requiresAuth: true // Definindo a propriedade requiresAuth como true para exigir autenticação
       }
+    },
+    {
+      path: '/explore',
+      component: PageLayout,
+      children: [
+        {
+          name: 'explore.details',
+          path: 'detalhes',
+          component: () => import('@/views/main/explore/DetailsPage.vue'),
+          props: (route) => ({
+            car_id: parseInt(route.query.car_id)
+          }),
+          meta: {
+            title: 'Detalhes'
+          }
+        }
+      ]
     }
   ]
 })

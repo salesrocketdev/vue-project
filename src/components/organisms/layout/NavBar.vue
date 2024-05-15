@@ -1,14 +1,14 @@
 <template>
   <header class="md:px-6 md:pt-2 md:pb-8">
     <nav class="fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" class="flex items-center mr-4 space-x-3 rtl:space-x-reverse">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-2 py-4">
+        <!-- <a href="/" class="flex items-center mr-4 space-x-3 rtl:space-x-reverse md:hidden">
           <img src="@/assets/logo.svg" alt="Logo" />
-        </a>
+        </a> -->
 
-        <!-- <IconButton class="-mx-1.5 -my-1.5" :icon="'bars'" @icon-button-click="toggleNavbar()" /> -->
+        <IconButton class="-mx-1.5 -my-1.5" :icon="'bars'" @icon-button-click="toggleNavbar()" />
 
-        <h5 class="text-lg font-semibold text-gray-900">{{ route.meta.title }}</h5>
+        <h5 class="text-md font-semibold text-gray-900">{{ route.meta.title }}</h5>
 
         <div class="flex ml-auto md:order-2 space-x-3 rtl:space-x-reverse">
           <NotificationDropdown />
@@ -27,6 +27,14 @@
         </nav>
       </div>
     </nav>
+
+    <div id="drawer" class="hidden">
+      <ul class="text-gray-900">
+        <li>lorem</li>
+        <li>lorem</li>
+        <li>lorem</li>
+      </ul>
+    </div>
   </header>
 </template>
 
@@ -36,6 +44,8 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 import NavLink from '@/components/atoms/layout/NavLink.vue'
+
+import IconButton from '@/components/atoms/button/IconButton.vue'
 
 import NotificationDropdown from '@/components/organisms/layout/NotificationDropdown.vue'
 import ProfileDropdown from '@/components/organisms/layout/ProfileDropdown.vue'
@@ -74,5 +84,21 @@ nav ul {
 nav ul li,
 nav ul li a {
   min-width: 120px;
+}
+
+@media (min-width: 768px) {
+  #drawer {
+    display: block;
+    margin-top: 73px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 190px;
+    height: 100%;
+
+    background-color: #ffffff;
+  }
 }
 </style>

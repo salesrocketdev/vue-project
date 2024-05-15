@@ -1,5 +1,5 @@
 <template>
-  <label :for="props.for" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+  <label :for="props.for" :class="labelClasses">
     <slot> </slot>
   </label>
 </template>
@@ -11,4 +11,13 @@ const props = defineProps({
     default: 'id'
   }
 })
+
+const lightClasses = 'text-gray-900'
+const darkClasses = 'dark:text-white'
+
+const labelClasses = [
+  'block mb-2 text-sm font-medium',
+  lightClasses
+  // darkClasses
+]
 </script>

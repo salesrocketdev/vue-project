@@ -1,6 +1,6 @@
 <template>
-  <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-    <h3 class="text-xl font-medium text-gray-900 dark:text-white"><slot></slot></h3>
+  <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+    <h3 class="text-xl font-medium text-gray-900"><slot></slot></h3>
     <button
       v-if="props.hasCloseButton"
       @click="emits('close-modal')"

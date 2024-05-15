@@ -7,7 +7,7 @@
         alt="google logo"
       />
       <span
-        class="block w-max font-semibold tracking-wide text-gray-700 dark:text-white text-sm transition duration-300 group-hover:text-blue-600 sm:text-base"
+        class="block w-max font-semibold tracking-wide text-gray-700 text-sm transition duration-300 group-hover:text-blue-600 sm:text-base"
       >
         Continuar com Google
       </span>
@@ -16,13 +16,3 @@
 </template>
 
 <script setup lang="ts"></script>
-
-<style scoped>
-button {
-  background-color: #fff;
-}
-
-button:hover {
-  filter: brightness(0.9);
-}
-</style>

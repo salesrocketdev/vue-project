@@ -3,7 +3,7 @@
     class="fixed bottom-0 left-0 right-0 bg-[#00000050] z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-full max-h-full"
   >
     <div class="relative flex justify-center w-full max-h-full">
-      <div class="fixed bottom-0 w-full max-w-md bg-white rounded-lg shadow dark:bg-gray-700">
+      <div class="fixed bottom-0 w-full max-w-md bg-white rounded-lg shadow">
         <ModalHeader>{{ props.modalTitle }}</ModalHeader>
         <ModalBody class="flex justify-center items-center">
           <svg

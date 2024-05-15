@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full bg-white py-4 text-center rounded-[1rem] shadow">
+  <div class="w-full bg-white py-4 text-center rounded-[1rem] shadow" @click="handleEmitCarClick()">
     <div class="flex pb-4">
       <div class="px-4 pb-4 text-center">
         <h5 class="text-lg font-semibold text-gray-900">
@@ -38,6 +38,8 @@ import { FuelType, TransmissionType } from '@/enums'
 
 import PrimaryButton from '@/components/atoms/button/PrimaryButton.vue'
 
+const emits = defineEmits(['car-item-click'])
+
 const props = defineProps({
   data: {
     type: Object as PropType<Car>,
@@ -63,4 +65,6 @@ const fuelTypeMap = computed(() => {
     [FuelType.Gasoline]: 'Gasolina'
   }
 })
+
+const handleEmitCarClick = () => emits('car-item-click')
 </script>

@@ -25,6 +25,7 @@ import BottomTabBar from '@/components/organisms/layout/BottomTabBar.vue'
 
   .container {
     margin-top: 60px;
+    margin-left: 190px;
   }
 }
 </style>
