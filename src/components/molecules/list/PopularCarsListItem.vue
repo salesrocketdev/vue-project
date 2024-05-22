@@ -24,7 +24,7 @@
     </div>
 
     <div class="px-6">
-      <PrimaryButton :type="'button'"> Alugar agora </PrimaryButton>
+      <BaseButton :type="'button'"> Alugar agora </BaseButton>
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@ import type { Car } from '@/types/response/car.response'
 
 import { FuelType, TransmissionType } from '@/enums'
 
-import PrimaryButton from '@/components/atoms/button/PrimaryButton.vue'
+import BaseButton from '@/components/atoms/button/BaseButton.vue'
 
 const emits = defineEmits(['car-item-click'])
 

@@ -1,6 +1,6 @@
 <template>
-  <button :class="`bg-${props.backgroundColor}`">
-    <RouterLink :class="`text-sm text-${props.textColor} font-regular `" :to="props.route">
+  <button :class="buttonClasses">
+    <RouterLink :class="linkClasses" :to="props.route">
       {{ props.label }}
     </RouterLink>
   </button>
@@ -9,51 +9,37 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 
-const props = defineProps({
-  label: {
-    type: String,
-    default: 'Texto'
-  },
-  route: {
-    type: String,
-    default: '/'
-  },
-  textColor: {
-    type: String,
-    default: 'white'
-  },
-  backgroundColor: {
-    type: String,
-    default: ''
-  }
+// Define an interface for the props
+interface ILabelButton {
+  label: string
+  route: string
+  textColor: 'white' | 'gray' | 'primary' | string
+  backgroundColor?: string
+}
+
+// Define the props for the component and set default values
+const props = withDefaults(defineProps<ILabelButton>(), {
+  label: 'Texto',
+  route: '/',
+  textColor: 'primary',
+  backgroundColor: 'transparent'
 })
+
+// Define a styles object to map the textColor prop to corresponding class names
+const styles: Record<string, string> = {
+  gray: 'text-gray-400',
+  primary: 'text-primary-400'
+}
+
+// Create an array of classes for the button element
+const buttonClasses = [
+  `bg-${props.backgroundColor}`, // Dynamic background color class
+  'font-regular w-auto h-full' // Common classes
+]
+
+// Create an array of classes for the RouterLink element
+const linkClasses = [
+  styles[props.textColor] || `text-${props.textColor}`, // Dynamic text color class
+  'text-sm font-regular block w-full h-full' // Common classes
+]
 </script>
-
-<style scoped>
-a {
-  font-weight: 600;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-a:hover {
-  background-color: transparent;
-}
-
-button {
-  font-weight: 600;
-}
-
-.text-white {
-  color: #fff;
-}
-
-.text-gray {
-  color: #8b8b8b;
-}
-
-.text-primary {
-  color: #6541b9;
-}
-</style>

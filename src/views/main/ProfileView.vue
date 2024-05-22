@@ -7,10 +7,10 @@
     </div>
 
     <form @submit.prevent="handleLogout()">
-      <PrimaryButton :is-loading="isLoading" :type="'submit'">
+      <BaseButton :is-loading="isLoading" :type="'submit'">
         <span v-if="!isLoading"> Sair da minha conta </span>
         <span v-else> Desconectando... </span>
-      </PrimaryButton>
+      </BaseButton>
     </form>
   </section>
 
@@ -22,7 +22,7 @@ import { useUserStore } from '@/stores/user.store'
 
 import { useAuth } from '@/composables/useAuth'
 
-import PrimaryButton from '@/components/atoms/button/PrimaryButton.vue'
+import BaseButton from '@/components/atoms/button/BaseButton.vue'
 
 import ModalLoading from '@/components/organisms/modal/ModalLoading.vue'
 

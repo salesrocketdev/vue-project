@@ -9,7 +9,12 @@
       </template>
     </EmailInput>
 
-    <PasswordInput :value="form.password" @update:value="form.password = $event">
+    <PasswordInput
+      :label="'Palavra-chave'"
+      :id="'password'"
+      :value="form.password"
+      @update:value="form.password = $event"
+    >
       <template v-slot:field-errors>
         <BaseInputErrorText
           v-if="v$.password.$error"
@@ -31,10 +36,10 @@
     </div>
 
     <div class="flex flex-col items-center mt-4 gap-y-2">
-      <PrimaryButton :is-loading="isLoading" :type="'submit'">
+      <BaseButton :is-loading="isLoading" :type="'submit'">
         <span v-if="!isLoading"> Acessar minha conta </span>
         <span v-else> Conectando... </span>
-      </PrimaryButton>
+      </BaseButton>
 
       <p class="text-sm font-light text-gray-500 dark:text-gray-400">ou</p>
 
@@ -74,7 +79,7 @@ import RememberPasswordInput from '@/components/molecules/input/RememberPassword
 
 import BaseInputErrorText from '@/components/atoms/text/BaseInputErrorText.vue'
 
-import PrimaryButton from '@/components/atoms/button/PrimaryButton.vue'
+import BaseButton from '@/components/atoms/button/BaseButton.vue'
 import GoogleButton from '@/components/atoms/button/GoogleButton.vue'
 
 import ModalLoading from '@/components/organisms/modal/ModalLoading.vue'

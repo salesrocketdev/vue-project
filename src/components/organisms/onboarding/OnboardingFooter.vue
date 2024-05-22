@@ -12,12 +12,7 @@
     </section>
 
     <div class="flex justify-end" v-if="step == 1">
-      <LabelButton
-        :label="'Próximo'"
-        :text-color="'primary'"
-        :route="'step2'"
-        @click="step = step + 1"
-      />
+      <LabelButton :label="'Próximo'" :route="'step2'" @click="step = step + 1" />
     </div>
 
     <div class="flex justify-between w-full" v-else-if="step == 2">
@@ -28,12 +23,7 @@
         @click="step = step - 1"
       />
 
-      <LabelButton
-        :label="'Próximo'"
-        :text-color="'primary'"
-        :route="'step3'"
-        @click="step = step + 1"
-      />
+      <LabelButton :label="'Próximo'" :route="'step3'" @click="step = step + 1" />
     </div>
 
     <div class="flex justify-between w-full" v-else-if="step == 3">

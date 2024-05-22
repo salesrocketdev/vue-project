@@ -6,7 +6,7 @@
           <img src="@/assets/logo.svg" alt="Logo" />
         </a> -->
 
-        <IconButton class="-mx-1.5 -my-1.5" :icon="'bars'" @icon-button-click="toggleNavbar()" />
+        <BaseIconButton :style-name="'outline'" :icon="'bars'" @click="toggleNavbar()" />
 
         <h5 class="text-md font-semibold text-gray-900">{{ route.meta.title }}</h5>
 
@@ -45,7 +45,7 @@ import { useRoute } from 'vue-router'
 
 import NavLink from '@/components/atoms/layout/NavLink.vue'
 
-import IconButton from '@/components/atoms/button/IconButton.vue'
+import BaseIconButton from '@/components/atoms/button/BaseIconButton.vue'
 
 import NotificationDropdown from '@/components/organisms/layout/NotificationDropdown.vue'
 import ProfileDropdown from '@/components/organisms/layout/ProfileDropdown.vue'

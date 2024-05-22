@@ -21,7 +21,7 @@
     </p>
 
     <div class="flex flex-col gap-y-2 w-full my-4">
-      <PrimaryButton
+      <BaseButton
         @click="
           () => {
             router.push({ name: 'explore' })
@@ -29,9 +29,10 @@
         "
       >
         Dar uma olhadinha
-      </PrimaryButton>
+      </BaseButton>
 
-      <SecondaryButton
+      <BaseButton
+        :style-name="'secondary'"
         @click="
           () => {
             router.push({ name: 'sign-up' })
@@ -39,7 +40,7 @@
         "
       >
         Criar uma conta
-      </SecondaryButton>
+      </BaseButton>
     </div>
   </section>
 </template>
@@ -47,8 +48,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 
-import PrimaryButton from '@/components/atoms/button/PrimaryButton.vue'
-import SecondaryButton from '@/components/atoms/button/SecondaryButton.vue'
+import BaseButton from '@/components/atoms/button/BaseButton.vue'
 
 const router = useRouter()
 </script>

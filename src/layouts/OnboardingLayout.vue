@@ -18,10 +18,6 @@ import OnboardingFooter from '@/components/organisms/onboarding/OnboardingFooter
 
 <style scoped>
 @media (min-width: 1024px) {
-  #app {
-    background-color: red;
-  }
-
   .container {
     margin-top: 60px;
   }

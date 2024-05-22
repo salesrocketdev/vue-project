@@ -10,10 +10,10 @@
     </EmailInput>
 
     <div class="flex flex-col items-center mt-4 gap-y-2">
-      <PrimaryButton :is-loading="isLoading" :type="'submit'">
+      <BaseButton :is-loading="isLoading" :type="'submit'">
         <span v-if="!isLoading"> Enviar email </span>
         <span v-else> Enviando... </span>
-      </PrimaryButton>
+      </BaseButton>
     </div>
   </form>
 
@@ -21,10 +21,10 @@
     <VerificationCodeForm />
 
     <div class="flex flex-col items-center mt-4 gap-y-2">
-      <PrimaryButton :is-loading="isLoading" :type="'submit'">
+      <BaseButton :is-loading="isLoading" :type="'submit'">
         <span v-if="!isLoading"> Validar código </span>
         <span v-else> Validando... </span>
-      </PrimaryButton>
+      </BaseButton>
     </div>
   </form>
 
@@ -44,7 +44,7 @@ import VerificationCodeForm from '@/components/molecules/form/VerificationCodeFo
 
 import BaseInputErrorText from '@/components/atoms/text/BaseInputErrorText.vue'
 
-import PrimaryButton from '@/components/atoms/button/PrimaryButton.vue'
+import BaseButton from '@/components/atoms/button/BaseButton.vue'
 
 import ModalLoading from '@/components/organisms/modal/ModalLoading.vue'
 

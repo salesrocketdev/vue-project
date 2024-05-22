@@ -103,7 +103,7 @@
     </PasswordInput>
 
     <div class="flex flex-col items-center mt-4 gap-y-2">
-      <PrimaryButton :type="'submit'">Criar conta</PrimaryButton>
+      <BaseButton :type="'submit'">Criar conta</BaseButton>
 
       <p class="text-sm font-light text-gray-500 dark:text-gray-400 mt-4">
         Já possuí uma conta?
@@ -141,7 +141,7 @@ import GenericInput from '@/components/molecules/input/GenericInput.vue'
 
 import BaseInputErrorText from '@/components/atoms/text/BaseInputErrorText.vue'
 
-import PrimaryButton from '@/components/atoms/button/PrimaryButton.vue'
+import BaseButton from '@/components/atoms/button/BaseButton.vue'
 
 import ModalLoading from '@/components/organisms/modal/ModalLoading.vue'
 
@@ -159,13 +159,6 @@ const form = reactive<SignUpRequest>({
   },
   password: '',
   passwordConfirm: ''
-  // name: 'Caio Sales',
-  // age: 23,
-  // phone: '(02) 1 9797-2076',
-  // email: 'caiofernandosales@outlook.com',
-  // document: {
-  //   taxNumber: '187.774.687-83'
-  // }
 })
 
 const rules = computed(() => {

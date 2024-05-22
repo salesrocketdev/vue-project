@@ -1,9 +1,5 @@
 <template>
-  <IconButton
-    class="ms-auto -mx-1.5 -my-1.5"
-    :icon="'bell'"
-    @icon-button-click="toggleDropdown()"
-  />
+  <BaseIconButton :style-name="'outline'" :icon="'bell'" @click="toggleDropdown()" />
 
   <div
     id="notificationDropdown"
@@ -83,7 +79,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import IconButton from '@/components/atoms/button/IconButton.vue'
+import BaseIconButton from '@/components/atoms/button/BaseIconButton.vue'
 
 import LabelButton from '@/components/atoms/button/LabelButton.vue'
 

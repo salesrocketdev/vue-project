@@ -1,5 +1,5 @@
 <template>
-  <button class="rounded-lg w-full p-3 duration-300" :type="props.type">
+  <button :class="buttonClasses" :type="props.type">
     <svg
       v-if="props.isLoading"
       aria-hidden="true"
@@ -23,26 +23,33 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  type: {
-    type: String as () => 'button' | 'submit' | 'reset',
-    default: 'button'
-  },
-  isLoading: {
-    type: Boolean,
-    default: false
-  }
+// Define an interface for the props that the component will accept
+interface IBaseButtonProps {
+  type?: 'button' | 'submit' | 'reset'
+  isLoading?: boolean
+  styleName?: 'outline' | 'primary' | 'secondary'
+  className?: string
+}
+
+// Set default values for the props using `withDefaults` and `defineProps`
+const props = withDefaults(defineProps<IBaseButtonProps>(), {
+  type: 'button',
+  isLoading: false,
+  styleName: 'primary',
+  className: ''
 })
+
+// Define a styles object to map the styleName prop to corresponding class names
+const styles: Record<string, string> = {
+  outline: 'border-gray-300 bg-transparent text-primary-400',
+  primary: 'border-transparent bg-primary-400 text-white',
+  secondary: 'border-transparent bg-secondary-500 text-primary-400'
+}
+
+// Create an array of classes that the button will use
+const buttonClasses = [
+  'border-2 rounded-lg w-full p-3 font-semibold tracking-wide text-sm transition duration-300 hover:brightness-90',
+  styles[props.styleName],
+  props.className
+]
 </script>
-
-<style scoped>
-button {
-  background-color: #8760e0;
-  color: #fff;
-  font-weight: 600;
-}
-
-button:hover {
-  filter: brightness(0.9);
-}
-</style>

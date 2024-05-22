@@ -9,7 +9,7 @@
           @update:value="form.search = $event"
         />
 
-        <IconButton class="-mx-1.5 -my-1.5" :icon="'filter'" />
+        <BaseIconButton :style-name="'outline'" :icon="'filter'" />
       </div>
     </form>
   </div>
@@ -25,7 +25,7 @@ import { reactive } from 'vue'
 
 import SearchInput from '@/components/molecules/input/SearchInput.vue'
 
-import IconButton from '@/components/atoms/button/IconButton.vue'
+import BaseIconButton from '@/components/atoms/button/BaseIconButton.vue'
 
 import BrandCarousel from '@/components/organisms/carousel/BrandCarousel.vue'
 import PopularCarsList from '@/components/organisms/list/PopularCarsList.vue'

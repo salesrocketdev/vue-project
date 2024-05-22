@@ -19,10 +19,6 @@ import BottomTabBar from '@/components/organisms/layout/BottomTabBar.vue'
 
 <style scoped>
 @media (min-width: 1024px) {
-  #app {
-    background-color: red;
-  }
-
   .container {
     margin-top: 60px;
     margin-left: 190px;

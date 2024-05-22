@@ -11,7 +11,7 @@
     </nav> -->
 
     <div>
-      <LabelButton :label="'Pular'" :background-color="'violet-500'" :route="'../auth/signIn'" />
+      <LabelButton :label="'Pular'" :text-color="'gray'" :route="'../auth/signIn'" />
     </div>
   </header>
 </template>
